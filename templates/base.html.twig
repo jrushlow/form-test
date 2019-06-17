@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block menu %}
+            <a href="{{ path('homepage') }}">Home</a>
+            <a href="{{ path('foo_form') }}">New Foo</a>
+            <a href="{{ path('bar_form') }}">New Bar</a>
+        {% endblock %}
+        {{ dump() }}
+        {% block body %}
+            <h1>It Works! for now...</h1>
+
+            <h2>Foo's - </h2>
+            {% for foo in allFoo %}
+                <a href="{{ path('foo_update', { id: foo.id }) }}"><p>Id: {{ foo.id }} Name: {{ foo.name }}</p></a>
+            {% endfor %}
+
+            <h2>Bar's - </h2>
+            {% for bar in allBar %}
+                <a href="{{ path('bar_update', { id: bar.id }) }}"><p>Id: {{ bar.id }} Name: {{ bar.name }}</p></a>
+            {% endfor %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
